@@ -42,6 +42,14 @@
             {% include "components/blog_card.html" with blog=blog %}
         {% empty %}
             <div class="no-results">
+                <div class="empty-state-icon-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                </div>
                 <h3>No Blogs Found</h3>
                 <p>Try adjusting your search criteria or browse all articles.</p>
                 <a href="{% url 'blog_list' %}" class="outline-btn">View All Blogs</a>

@@ -29,7 +29,11 @@
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:title" content="{% block og_title %}Roshan Damor | Full-Stack Software Engineer & Python Developer | DevMeet{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Explore scalable systems, real-time architectures, and technical case studies by Roshan Damor on devmeet.logicbyroshan.in.{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/stock/Portfolio.webp' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/stock/devmeet-og-preview.png' %}{% endblock %}">
+    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/stock/devmeet-og-preview.png' %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:alt" content="Roshan Damor - Software Engineer Portfolio Cover">
 
     <!-- Twitter Cards -->
@@ -39,7 +43,7 @@
     <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
     <meta name="twitter:title" content="{% block twitter_title %}Roshan Damor | Full-Stack Software Engineer & Python Developer | DevMeet{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}Explore scalable systems, real-time architectures, and technical case studies by Roshan Damor on devmeet.logicbyroshan.in.{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/stock/Portfolio.webp' %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/stock/devmeet-og-preview.png' %}{% endblock %}">
 
     <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
