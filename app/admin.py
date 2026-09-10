@@ -197,6 +197,16 @@ class ExperienceAdmin(admin.ModelAdmin):
     list_filter = ("start_date", "end_date", "categories")
     search_fields = ("title", "description", "categories")
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.annotate(
+            is_current=models.Case(
+                models.When(end_date__isnull=True, then=models.Value(1)),
+                default=models.Value(0),
+                output_field=models.IntegerField()
+            )
+        ).order_by("-is_current", "-start_date")
+
     def company_logo(self, obj):
         if obj.image:
             return format_html('<div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.06); border:1px solid #334155; border-radius:6px; padding:3px;"><img src="{}" style="max-width:28px; max-height:28px; object-fit:contain;" /></div>', obj.image.url)

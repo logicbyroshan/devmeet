@@ -194,6 +194,28 @@ class Blog(models.Model):
         return self.title
 
 
+class ExperienceQuerySet(models.QuerySet):
+    def prioritized(self):
+        return self.annotate(
+            is_current=models.Case(
+                models.When(end_date__isnull=True, then=models.Value(1)),
+                default=models.Value(0),
+                output_field=models.IntegerField()
+            )
+        ).order_by("-is_current", "-start_date", "-created_at")
+
+
+class ExperienceManager(models.Manager):
+    def get_queryset(self):
+        return ExperienceQuerySet(self.model, using=self._db).annotate(
+            is_current=models.Case(
+                models.When(end_date__isnull=True, then=models.Value(1)),
+                default=models.Value(0),
+                output_field=models.IntegerField()
+            )
+        ).order_by("-is_current", "-start_date", "-created_at")
+
+
 # Experience Model
 class Experience(models.Model):
     title = models.CharField(max_length=255, db_index=True)
@@ -204,6 +226,8 @@ class Experience(models.Model):
     categories = models.CharField(max_length=255, help_text="Separate categories with commas", default="Uncategorized", db_index=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = ExperienceManager()
 
     class Meta:
         ordering = ["-start_date"]

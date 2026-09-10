@@ -63,10 +63,19 @@
             {% for skill in skills %}
                 {% include "components/skill_card.html" with skill=skill %}
             {% empty %}
-                <p>No Skills Found</p>
+                <div class="empty-state-box">
+                    <div class="empty-state-icon-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="empty-state-title">Skills Catalog Updating</h3>
+                    <p class="empty-state-desc">Technical proficiencies, frameworks, and dev stack tools are currently being organized.</p>
+                </div>
             {% endfor %}
         </div>
             
+        {% if skills %}
         <div class="section-footer-cta skills-footer">
             <a href="{% url 'skill_list' %}" class="view-all-cta-btn">
                 <span>View All Skills</span>
@@ -75,6 +84,7 @@
                 </svg>
             </a>            
         </div>
+        {% endif %}
     </div>  
 
     <!-- 3. Experience Section -->  
@@ -88,10 +98,20 @@
             {% for experience in experiences %}
                 {% include "components/experience_card.html" with experience=experience %}
             {% empty %}
-                <p>No Experience Found</p>
+                <div class="empty-state-box">
+                    <div class="empty-state-icon-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="empty-state-title">Career Milestones Updating</h3>
+                    <p class="empty-state-desc">Professional roles, key achievements, and enterprise impact are currently being curated.</p>
+                </div>
             {% endfor %}
         </div>
         
+        {% if experiences %}
         <div class="section-footer-cta exp-footer">
             <a href="{% url 'experience_list' %}" class="view-all-cta-btn">
                 <span>View All Experiences</span>
@@ -100,6 +120,7 @@
                 </svg>
             </a>
         </div>
+        {% endif %}
     </div>
 
     <!-- 4. Projects Section -->
@@ -112,10 +133,24 @@
             {% for project in projects %}
                 {% include "components/project_card.html" with project=project %}
             {% empty %}
-                <p>No Projects Found</p>
+                <div class="empty-state-box">
+                    <div class="empty-state-icon-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="empty-state-title">Projects Being Packaged</h3>
+                    <p class="empty-state-desc">Currently documenting full-stack architectures, live demos, and open-source repositories. Fresh case studies will be live shortly!</p>
+                    <div class="empty-state-badge">
+                        <span class="pulse-dot"></span> In Active Development
+                    </div>
+                </div>
             {% endfor %}
         </div>
             
+        {% if projects %}
         <div class="section-footer-cta project-footer">
             <a href="{% url 'project_list' %}" class="view-all-cta-btn">
                 <span>View All Projects</span>
@@ -124,6 +159,7 @@
                 </svg>
             </a>
         </div>
+        {% endif %}
     </div>
 
     <!-- 5. Blogs Section -->
@@ -137,9 +173,24 @@
             {% for blog in blogs %}
                 {% include "components/blog_card.html" with blog=blog %}
             {% empty %}
-                <p>No Blogs Found</p>
+                <div class="empty-state-box">
+                    <div class="empty-state-icon-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <path d="M2 2l7.586 7.586"></path>
+                            <circle cx="11" cy="11" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="empty-state-title">Technical Guides Coming Soon</h3>
+                    <p class="empty-state-desc">Drafting in-depth engineering breakdowns on Python, Django, scalable API design, and distributed systems. Stay tuned!</p>
+                    <div class="empty-state-badge">
+                        <span class="pulse-dot"></span> Publishing Soon
+                    </div>
+                </div>
             {% endfor %}
         </div>
+        {% if blogs %}
         <div class="section-footer-cta blogs-footer">
             <a href="{% url 'blog_list' %}" class="view-all-cta-btn">
                 <span>View All Blogs</span>
@@ -148,6 +199,7 @@
                 </svg>
             </a>
         </div>
+        {% endif %}
     </div>
 
     <!-- 6. FAQs Section -->
@@ -161,7 +213,17 @@
             {% for faq in faqs %}
                 {% include "components/faq_card.html" with faq=faq %}
             {% empty %}
-                <p>No FAQ's Found</p>
+                <div class="empty-state-box">
+                    <div class="empty-state-icon-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h3 class="empty-state-title">Have Questions?</h3>
+                    <p class="empty-state-desc">Feel free to reach out directly via the contact form or email below!</p>
+                </div>
             {% endfor %}
         </div>
     </div>
@@ -205,13 +267,13 @@
                         </div>
                     </a>
 
-                    <a href="tel:+911234567890" class="contact-item">
+                    <a href="tel:+919179924975" class="contact-item">
                         <div class="contact-icon">
                             <img src="{% static 'images/icons/phone.webp' %}" alt="Phone">
                         </div>
                         <div class="contact-meta">
                             <span class="meta-label">Direct Contact</span>
-                            <span class="meta-value">+91 1234567890</span>
+                            <span class="meta-value">+91 9179924975</span>
                         </div>
                     </a>
 
@@ -224,22 +286,6 @@
                             <span class="meta-value">Indore, Madhya Pradesh, India</span>
                         </div>
                     </div>
-                </div>
-
-                <!-- Social Fast Links -->
-                <div class="contact-social-links">
-                    <a href="https://github.com/logicbyroshan" target="_blank" rel="noopener noreferrer" class="social-pill">
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/iamroshandamor/" target="_blank" rel="noopener noreferrer" class="social-pill">
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://x.com/iamroshandamor" target="_blank" rel="noopener noreferrer" class="social-pill">
-                        <span>Twitter</span>
-                    </a>
-                    <a href="https://www.threads.net/@logicbyroshan" target="_blank" rel="noopener noreferrer" class="social-pill">
-                        <span>Threads</span>
-                    </a>
                 </div>
             </div>
 

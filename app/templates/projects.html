@@ -42,6 +42,13 @@
             {% include "components/project_card.html" with project=project %}
         {% empty %}
             <div class="no-results">
+                <div class="empty-state-icon-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
                 <h3>No Projects Found</h3>
                 <p>Try adjusting your search criteria or browse all projects.</p>
                 <a href="{% url 'project_list' %}" class="outline-btn">View All Projects</a>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Project, Blog, Skill, Experience, FAQ, Resume, ContactMessage
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Case, When, Value, IntegerField, F
 from django.core.mail import send_mail
 from django.http import JsonResponse, FileResponse, HttpResponse
 from django.conf import settings
@@ -168,7 +168,13 @@ def home(request):
         blogs = blogs.order_by('-created_at')[:3]
 
     skills = skills.order_by("-level", "-created_at")[:6]
-    experiences = experiences.order_by("-start_date")[:3]
+    experiences = experiences.annotate(
+        is_current=Case(
+            When(end_date__isnull=True, then=Value(1)),
+            default=Value(0),
+            output_field=IntegerField()
+        )
+    ).order_by("-is_current", "-start_date", "-created_at")[:3]
     faqs = faqs.order_by("-created_at")[:6]
 
     return render(request, "portfolio-landing-page.html", {
@@ -370,7 +376,13 @@ def experience_list(request):
     if sort_by == 'oldest':
         experiences = experiences.order_by('start_date')
     else:
-        experiences = experiences.order_by('-start_date')
+        experiences = experiences.annotate(
+            is_current=Case(
+                When(end_date__isnull=True, then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField()
+            )
+        ).order_by("-is_current", "-start_date", "-created_at")
 
     paginator = Paginator(experiences, 6)
     page_number = request.GET.get('page')
